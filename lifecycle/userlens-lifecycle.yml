@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+versioning:
+  scheme: none-documented
+  detail: No version appears in Events API paths or headers; SDK versions follow
+    semver on npm (userlens-analytics-sdk 1.2.6, userlens-session-recorder 2.2.1).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  detail: No deprecation policy or RFC 8594 Sunset header support documented.
+sla:
+  url: null
+status_page: null
+probes:
+  - url: https://status.userlens.io/
+    result: no-dns
+  - url: https://userlens.io/changelog
+    status: 404
+deprecated_operations: []
+notes: Early-stage provider (YC Spring 2026); no status page, SLA, changelog, or
+  deprecation policy published as of this pass.

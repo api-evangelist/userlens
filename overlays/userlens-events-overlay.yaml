@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Userlens Events API
+  version: 1.0.0
+x-provenance:
+  generated: '2026-07-21'
+  method: generated
+  source: openapi/userlens-events-openapi.yml
+extends: openapi/userlens-events-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: userlens
+        catalog: https://github.com/api-evangelist/userlens
+        notes: Spec authored from the published GitBook API reference; Userlens
+          ships no machine-readable spec of its own.
+  - target: $.info
+    update:
+      x-agent-guidance: Authenticate with HTTP Basic using the Write Code as username
+        and an empty password. Always send identify before group or track for a
+        given userId. There is no idempotency key — do not blindly retry non-2xx
+        POSTs without accepting possible duplicate events.
+  - target: $.paths['/event'].post
+    update:
+      x-rate-limit-documented: false
+  - target: $.paths['/raw/event'].post
+    update:
+      x-proxy-endpoint: true

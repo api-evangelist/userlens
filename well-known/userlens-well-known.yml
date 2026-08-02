@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+hosts:
+  - host: https://userlens.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /llms.txt
+        status: 200
+        file: ../llms/userlens-llms.txt
+        note: Rich provider-published llms.txt (saved verbatim under llms/).
+      - path: /robots.txt
+        status: 200
+      - path: /sitemap.xml
+        status: 200
+  - host: https://events.userlens.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+  - host: https://raw.userlens.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+  - host: https://app.userlens.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 200
+        note: Returns the SPA HTML shell (catch-all route), not a valid OIDC JSON
+          document — treated as absent.

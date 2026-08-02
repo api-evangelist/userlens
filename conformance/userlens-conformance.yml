@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+standards:
+  - id: http-basic-auth
+    conforms: true
+    evidence: Events API authenticates with HTTP Basic (RFC 7617) — Write Code as
+      username, empty password (docs API reference).
+  - id: oauth2
+    conforms: false
+    evidence: No OAuth 2.0 flows documented for the API.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery document on any host (app.userlens.io
+      /.well-known/openid-configuration returns the SPA shell, not OIDC JSON).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors are plain HTTP status codes; no application/problem+json.
+  - id: segment-style-tracking-semantics
+    conforms: true
+    evidence: The Events API mirrors the identify/group/track semantic model
+      popularized by the Segment spec (type, userId, groupId, traits, event,
+      properties fields).
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency key documented.
+  - id: soc2-type2
+    conforms: claimed
+    evidence: 'Provider llms.txt (https://userlens.io/llms.txt) states "Security:
+      SOC 2 Type 2, GDPR compliant, SSO". No public trust center or report portal
+      found (trust.userlens.io does not resolve; /trust and /compliance 404).'
+  - id: gdpr
+    conforms: claimed
+    evidence: Claimed in provider llms.txt; the Privacy & Security page
+      (https://userlens.io/privacy-security) details AWS VPC architecture, AES-256
+      at rest, TLS 1.3 in transit, but names no formal certification.

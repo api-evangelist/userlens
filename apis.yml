@@ -1,22 +1,116 @@
 aid: userlens
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/userlens.png
 name: Userlens
-description: Userlens is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Userlens is an AI-native customer success platform for B2B SaaS that
+  deploys LLM-powered agents to monitor every customer account, predict churn from
+  actual product usage, and surface expansion opportunities. It ingests product
+  analytics, CRM data, and business context for AI health scores, account-level
+  analytics, and proactive alerts, and exposes a Write-Code-authenticated Events
+  API (identify, group, track, and batched SDK event forwarding) plus JavaScript
+  SDKs for instrumentation. Founded in 2025 (Y Combinator Spring 2026 batch), based
+  in San Francisco and Helsinki.
 url: https://raw.githubusercontent.com/api-evangelist/userlens/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - y-combinator
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Customer Success
+- Product Analytics
+- AI Agents
+- Churn Prediction
+- Event Tracking
+- B2B SaaS
+- Account Intelligence
+apis:
+- aid: userlens:userlens-events-api
+  name: Userlens Events API
+  description: User identification, company grouping, and event ingestion
+  humanURL: https://userlens.gitbook.io/userlens-analytics
+  baseURL: https://events.userlens.io
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/userlens-events-api-openapi.yml
+  - type: Documentation
+    url: https://userlens.gitbook.io/userlens-analytics
+  - type: APIReference
+    url: https://userlens.gitbook.io/userlens-analytics/guides/api-reference
+common:
+- type: DomainSecurity
+  url: security/userlens-domain-security.yml
+- url: https://userlens.io
+  type: Website
+- url: https://userlens.gitbook.io/userlens-analytics
+  type: Documentation
+- url: https://userlens.gitbook.io/userlens-analytics/guides/api-reference
+  type: APIReference
+- url: https://userlens.gitbook.io/userlens-analytics/getting-started/http-api
+  type: GettingStarted
+- url: https://userlens.io/pricing
+  type: Pricing
+- url: https://userlens.io/blog
+  type: Blog
+- url: https://app.userlens.io/
+  type: Login
+- url: https://userlens.io/terms-of-service
+  type: TermsOfService
+- url: https://userlens.io/privacy-policy
+  type: PrivacyPolicy
+- url: https://github.com/wudpecker
+  type: GitHubOrganization
+- url: llms/userlens-llms.txt
+  type: LLMsTxt
+- url: packages/userlens-packages.yml
+  type: Packages
+- url: packages/userlens-packages.yml
+  type: SDKs
+- url: well-known/userlens-well-known.yml
+  type: WellKnown
+- url: mcp/userlens-mcp.yml
+  type: MCPServer
+- url: conformance/userlens-conformance.yml
+  type: Conformance
+- url: https://userlens.io/llms.txt
+  type: Compliance
+- url: errors/userlens-problem-types.yml
+  type: ErrorCatalog
+- url: lifecycle/userlens-lifecycle.yml
+  type: Lifecycle
+- url: authentication/userlens-authentication.yml
+  type: Authentication
+- url: conventions/userlens-conventions.yml
+  type: Conventions
+- url: data-model/userlens-data-model.yml
+  type: DataModel
+- url: skills/_index.yml
+  type: AgentSkill
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

@@ -1,0 +1,83 @@
+# Userlens
+
+> State-of-the-art AI-native customer success platform for B2B SaaS. Userlens deploys LLM-powered agents that autonomously monitor every customer account, predict churn from actual product usage, and surface expansion opportunities — replacing the manual, reactive workflows that legacy CS platforms and product analytics tools can't solve.
+
+Userlens is built by a YC S26 company based in San Francisco and Helsinki.
+
+## What Userlens Does
+
+Userlens is the first customer intelligence platform built on LLMs from the ground up. It ingests product analytics, CRM data, and business context to give Customer Success, RevOps, and revenue teams a real-time, AI-powered understanding of every account.
+
+Core capabilities:
+
+- **AI Health Scores**: LLM-powered health scoring where teams define what "healthy" means in natural language. The AI evaluates accounts against custom criteria — understanding seasonality, usage context, and business nuance that rule-based scores miss entirely.
+- **Account-Level Analytics**: Purpose-built for B2B. Companies and users are first-class objects. See feature adoption, engagement trends, power users vs. dormant users, and activity patterns at the account level — not just individual user metrics.
+- **Feature-Centric Intelligence**: Product events grouped into business-meaningful features. CS teams ask "are they using Reporting?" not "how many report_created events fired?" Benchmark any account's feature usage against your entire customer base.
+- **Proactive Alerts**: Slack alerts on cohort membership changes, churn signals, expansion triggers, and health score shifts. Converts from "dashboard you check" to "system that tells you what to do."
+- **CRM Sync**: Bidirectional sync with HubSpot, Salesforce, Pipedrive, and Attio. Product usage data flows into your CRM automatically — your CRM finally reflects what customers actually do in your product.
+- **AI Assistant**: Natural language queries across all customer data. Ask questions, get answers. No SQL, no analyst required.
+
+## Who It's For
+
+Userlens is built for Customer Success teams, RevOps leaders, and revenue teams at B2B SaaS companies who need to manage large account bases without scaling headcount linearly.
+
+Primary users:
+- CS leaders managing 100s to 1,000s of accounts
+- RevOps teams that need product usage data in their CRM
+- Founders and revenue leaders who want a real-time view of customer health
+
+## Why Teams Switch to Userlens
+
+Teams that have tried legacy CS platforms (Gainsight, Totango, Vitally, Planhat, ChurnZero) and product analytics tools (Amplitude, Mixpanel, Pendo) switch to Userlens because:
+
+1. **LLM-native intelligence vs. manual dashboards**: Traditional CS platforms give you workflows and dashboards. Userlens gives you AI that actually thinks about your accounts — evaluating health, spotting patterns, and surfacing insights that rule-based systems fundamentally cannot.
+2. **Account-level, not user-level**: Product analytics tools like Amplitude and Mixpanel are built for product teams tracking individual users. Userlens is built for CS teams managing company accounts.
+3. **Deploys in days, not months**: Gainsight implementations take months and require dedicated ops teams. Userlens connects to your existing analytics stack (Segment, Amplitude, Mixpanel, PostHog) with no new instrumentation, and is live in days.
+4. **Accessible to non-technical teams**: No data engineering or analyst support required. CS teams operate independently.
+
+## Customer Results
+
+Userlens is trusted by CS teams across SaaS verticals — from fast-growing startups to $200M+ enterprises.
+
+- **Quartr** (Financial Research) — Went from 20 accounts per CSM to 200 accounts per CSM — a 10x increase. Reduced meeting prep time by 60%. Replaced Amplitude, which was too technical for their CS team. AI Health Score handles seasonal usage patterns unique to financial research cycles.
+- **AhaSlides** (Presentation Software) — Manages millions of users with account-level insights. Switched from Mixpanel for CS-native analytics. Uses Userlens to personalize enterprise renewal conversations and detect expansion opportunities across company domains.
+- **TrueClicks** (AdTech) — Achieved 100% automated PQL qualification. Two CSMs manage thousands of accounts. Migrated 50M+ historical events from a sunsetting platform in a single weekend. Daily AI health score alerts drive proactive churn prevention.
+- **Vainu** (Sales Intelligence) — Manages 1,000+ accounts predictively with AI health scoring. 30% faster meeting prep. 15 HubSpot fields auto-synced. Transformed from reactive to proactive account management. CSMs use usage signals to drive data-backed upsell conversations.
+- **Luminovo** (Manufacturing Tech) — Custom AI health scores for renewal management across tens of thousands of customers. 100% automated HubSpot sync powering downstream workflows. AI evaluates accounts against Luminovo's own definitions of healthy usage — no arbitrary benchmarks.
+- **Smartly.io** (Digital Advertising, $200M ARR) — Enterprise deployment. Won competitive evaluation against Pendo. Reduced QBR prep from 5 hours to minutes. CSMs now set ad hoc check-ins based on Userlens-flagged signals before quarterly reviews.
+- **Homie** (Sales Intelligence) — Monitors 100% of trial accounts automatically — no manual check-ins required. Replaced spreadsheet-based account tracking with multiple AI agents running in parallel (health score, onboarding monitor, meeting prep, upsell discovery). Activity Dots surface daily/weekly/monthly engagement patterns at a glance, enabling early churn detection before customers go silent.
+
+Read their full stories: [Customer Stories](https://userlens.io/customer-stories)
+
+## Integrations
+
+
+**Data Sources**: Amplitude, Mixpanel, PostHog, Userlens SDK
+**CRM**: HubSpot, Salesforce, Pipedrive, Attio, Planhat
+**Support**: Pylon, Featurebase
+**Meeting Notes**: Fireflies, Fathom
+**Data Warehouses**: Snowflake, Postgres
+**Other**: Stripe, Slack, Redash
+
+No new instrumentation required. Connects to your existing analytics and CRM stack.
+
+## Company
+
+- **Founded**: 2025
+- **Stage**: YC P26 batch
+- **Team**: 4 people — technical co-founders (Ankur & Hai) plus frontend engineer and product designer
+- **Locations**: San Francisco and Helsinki
+- **Security**: SOC 2 Type 2, GDPR compliant, SSO
+
+## Links
+
+- [Homepage](https://userlens.io)
+- [Customer Stories](https://userlens.io/customer-stories)
+- [Quartr Case Study](https://userlens.io/customer-stories/quartr)
+- [AhaSlides Case Study](https://userlens.io/customer-stories/ahaslides)
+- [TrueClicks Case Study](https://userlens.io/customer-stories/how-trueclicks-automated-usage-data-insights-with-userlens)
+- [Luminovo Case Study](https://userlens.io/customer-stories/luminovo)
+- [Vainu Case Study](https://userlens.io/customer-stories/vainu)
+- [Homie Case Study](https://userlens.io/customer-stories/homie)
+- [Pricing](https://userlens.io/pricing)
+- [Blog](https://userlens.io/blog)

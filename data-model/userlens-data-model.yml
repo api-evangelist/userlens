@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/userlens-events-openapi.yml
+docs: https://userlens.gitbook.io/userlens-analytics/guides/api-reference
+entities:
+  - name: User
+    id_field: userId
+    description: Individual product user, identified with traits (email, name,
+      plan, signupDate) via the identify event.
+  - name: Company
+    id_field: groupId
+    description: Company/organization account (first-class object for B2B
+      analytics), described with traits (name, industry, employees, plan) via the
+      group event.
+  - name: Event
+    description: Product activity — auto-captured click (XPath + DOM snapshot),
+      custom tracked event, or $ul_pageview page view.
+  - name: SnapshotNode
+    description: Node of the DOM tree captured with auto-tracked clicks
+      (tag_name, attributes, nth_child, children).
+relationships:
+  - from: User
+    to: Company
+    kind: belongs_to
+    via: groupId
+    detail: A group call associates a userId with a groupId.
+  - from: Company
+    to: User
+    kind: has_many
+    via: userId
+  - from: User
+    to: Event
+    kind: has_many
+    via: userId
+  - from: Event
+    to: SnapshotNode
+    kind: has_many
+    via: snapshot
+    detail: Raw click events carry a DOM snapshot tree.

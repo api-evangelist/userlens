@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://userlens.gitbook.io/userlens-analytics/guides/api-reference
+format: http-status
+notes: Userlens documents plain HTTP status codes for the Events API; no
+  application/problem+json (RFC 9457) envelope or machine-readable error codes
+  are published.
+problems:
+  - status: 400
+    title: Invalid request body
+    remediation: Check required fields for the event type — identify requires
+      type/userId/source/traits; group requires type/groupId/userId/source; track
+      requires type/userId/source/event.
+    source_operation: openapi/userlens-events-openapi.yml#submitEvent
+  - status: 401
+    title: Invalid or missing Write Code
+    remediation: Send Authorization Basic base64("write_code:") — write code as
+      username with a trailing colon and empty password. Obtain the Write Code
+      from https://app.userlens.io/settings/integrations/userlens-sdk.
+    source_operation: openapi/userlens-events-openapi.yml#submitEvent
+  - status: 500
+    title: Server error
+    remediation: Retry later; note there is no documented idempotency mechanism,
+      so retries may duplicate events.
+    source_operation: openapi/userlens-events-openapi.yml#submitEvent

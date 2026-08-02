@@ -1,0 +1,11 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: userlens-instrument-user-lifecycle.md
+    name: Instrument a user lifecycle in Userlens
+    api: openapi/userlens-events-openapi.yml
+    operations: [submitEvent]
+  - file: userlens-proxy-sdk-events.md
+    name: Forward Userlens SDK events through a backend proxy
+    api: openapi/userlens-events-openapi.yml
+    operations: [forwardRawEvents]

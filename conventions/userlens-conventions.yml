@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: searched
+docs: https://userlens.gitbook.io/userlens-analytics/guides/api-reference
+authentication:
+  style: http-basic
+  detail: Write Code as Basic Auth username with empty password (base64 of
+    "write_code:"); see authentication/userlens-authentication.yml.
+idempotency:
+  supported: false
+  detail: No idempotency key or deduplication mechanism is documented for the
+    Events API.
+pagination:
+  supported: false
+  detail: The public surface is write-only ingestion (identify/group/track and
+    batched raw events); no list/read endpoints are documented, so no pagination.
+envelope:
+  request: Single JSON object dispatched by the `type` field (identify | group |
+    track) on POST /event; batched `events[]` array on POST /raw/event.
+  reserved_prefixes:
+    - prefix: $ul_
+      detail: Auto-added browser-context and system properties ($ul_browser,
+        $ul_os, $ul_page, $ul_pageview event, etc.).
+  error: Plain HTTP status codes (200/400/401/500); no problem+json envelope.
+    See errors/userlens-problem-types.yml.
+versioning:
+  scheme: none-documented
+  detail: No API version appears in paths, headers, or docs.
+rate_limits:
+  documented: false
+request_tracing:
+  documented: false
+field_expansion:
+  supported: false
+hosts:
+  - purpose: Identify, group, and custom event tracking
+    url: https://events.userlens.io
+  - purpose: Batched SDK event forwarding (proxy target)
+    url: https://raw.userlens.io
+cross_links:
+  authentication: authentication/userlens-authentication.yml
+  errors: errors/userlens-problem-types.yml
+  openapi: openapi/userlens-events-openapi.yml

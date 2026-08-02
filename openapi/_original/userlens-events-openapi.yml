@@ -1,0 +1,287 @@
+x-provenance:
+  generated: '2026-07-21'
+  method: generated
+  source: https://userlens.gitbook.io/userlens-analytics/guides/api-reference
+  note: OpenAPI authored by API Evangelist from the published Userlens HTTP API
+    reference (GitBook). Userlens does not publish a machine-readable spec; every
+    path, field, and response below is taken from the documented API reference and
+    HTTP API getting-started guide. No endpoints were invented.
+openapi: 3.1.0
+info:
+  title: Userlens Events API
+  description: The Userlens HTTP API for direct integration or server-side event
+    forwarding. Identify users, associate them with companies (groups), track custom
+    events, and forward batched SDK-collected events. All requests authenticate with
+    your Write Code via HTTP Basic Auth (write code as username, empty password).
+  version: '1.0'
+  contact:
+    name: Userlens
+    url: https://userlens.io
+  x-docs: https://userlens.gitbook.io/userlens-analytics
+servers:
+  - url: https://events.userlens.io
+    description: Identify, group, and custom event tracking
+paths:
+  /event:
+    post:
+      operationId: submitEvent
+      summary: Identify a user, group a user into a company, or track a custom event
+      description: Single ingestion endpoint dispatched by the `type` field. Use
+        `identify` to sync user traits (on signup, login, or profile update), `group`
+        to associate a user with a company or organization (essential for B2B analytics),
+        and `track` to record a custom event such as a purchase or feature usage.
+      tags:
+        - Events
+      security:
+        - writeCodeBasicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/IdentifyRequest'
+                - $ref: '#/components/schemas/GroupRequest'
+                - $ref: '#/components/schemas/TrackRequest'
+              discriminator:
+                propertyName: type
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Invalid request body
+        '401':
+          description: Invalid or missing Write Code
+        '500':
+          description: Server error
+  /raw/event:
+    servers:
+      - url: https://raw.userlens.io
+        description: Batched SDK event forwarding
+    post:
+      operationId: forwardRawEvents
+      summary: Forward SDK-collected events in batch
+      description: Forward events collected by the Userlens JavaScript SDK. This
+        is the endpoint a proxy server should use when routing SDK events through
+        your own backend. Accepts auto-captured clicks (XPath + DOM snapshot), custom
+        pushed events, and page views.
+      tags:
+        - Events
+      security:
+        - writeCodeBasicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RawEventBatch'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Invalid request body
+        '401':
+          description: Invalid or missing Write Code
+        '500':
+          description: Server error
+components:
+  securitySchemes:
+    writeCodeBasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Auth with your Userlens Write Code as the username
+        and an empty password (base64 of `write_code:` with trailing colon). Get
+        your Write Code from https://app.userlens.io/settings/integrations/userlens-sdk.
+  schemas:
+    IdentifyRequest:
+      type: object
+      required: [type, userId, source, traits]
+      properties:
+        type:
+          type: string
+          const: identify
+          description: Must be "identify"
+        userId:
+          type: string
+          description: Unique user identifier
+        source:
+          type: string
+          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
+          enum: [userlens-js-analytics-sdk, userlens-restapi]
+        traits:
+          type: object
+          description: User properties (email, name, plan, etc.)
+          additionalProperties: true
+    GroupRequest:
+      type: object
+      required: [type, groupId, userId, source]
+      properties:
+        type:
+          type: string
+          const: group
+          description: Must be "group"
+        groupId:
+          type: string
+          description: Unique company/organization identifier
+        userId:
+          type: string
+          description: User being associated with the company
+        source:
+          type: string
+          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
+          enum: [userlens-js-analytics-sdk, userlens-restapi]
+        traits:
+          type: object
+          description: Company properties (name, industry, employees, plan, etc.)
+          additionalProperties: true
+    TrackRequest:
+      type: object
+      required: [type, userId, source, event]
+      properties:
+        type:
+          type: string
+          const: track
+          description: Must be "track"
+        userId:
+          type: string
+          description: User who performed the action
+        source:
+          type: string
+          description: Use "userlens-restapi"
+          enum: [userlens-js-analytics-sdk, userlens-restapi]
+        event:
+          type: string
+          description: Event name (e.g., "Subscription Upgraded")
+        properties:
+          type: object
+          description: Additional event metadata
+          additionalProperties: true
+    RawEventBatch:
+      type: object
+      required: [events]
+      properties:
+        events:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/RawEvent'
+              - $ref: '#/components/schemas/PushedEvent'
+              - $ref: '#/components/schemas/PageViewEvent'
+    RawEvent:
+      type: object
+      description: Auto-captured click event (event value is the XPath of the clicked
+        element)
+      required: [event, is_raw, snapshot, properties]
+      properties:
+        event:
+          type: string
+          description: XPath of clicked element
+        is_raw:
+          type: boolean
+          const: true
+        userId:
+          type: string
+        snapshot:
+          type: array
+          description: DOM tree structure
+          items:
+            $ref: '#/components/schemas/SnapshotNode'
+        properties:
+          $ref: '#/components/schemas/BrowserContextProperties'
+    PushedEvent:
+      type: object
+      description: Custom event manually tracked via pushEvent()
+      required: [event, is_raw]
+      properties:
+        event:
+          type: string
+          description: Event name
+        is_raw:
+          type: boolean
+          const: false
+        userId:
+          type: string
+        properties:
+          type: object
+          description: Custom properties plus auto-added browser context ($ul_-prefixed)
+          additionalProperties: true
+    PageViewEvent:
+      type: object
+      description: Navigation event
+      required: [event, properties]
+      properties:
+        event:
+          type: string
+          const: $ul_pageview
+        userId:
+          type: string
+        properties:
+          type: object
+          properties:
+            $ul_page: {type: string}
+            $ul_pathname: {type: string}
+            $ul_host: {type: string}
+            $ul_referrer: {type: string}
+            $ul_referring_domain: {type: string}
+            $ul_query: {type: string}
+    BrowserContextProperties:
+      type: object
+      description: Browser context auto-added to SDK events ($ul_-prefixed)
+      properties:
+        $ul_browser: {type: string}
+        $ul_browser_version: {type: string}
+        $ul_os: {type: string}
+        $ul_os_version: {type: string}
+        $ul_browser_language: {type: string}
+        $ul_screen_width: {type: number}
+        $ul_screen_height: {type: number}
+        $ul_viewport_width: {type: number}
+        $ul_viewport_height: {type: number}
+        $ul_device_type:
+          type: string
+          enum: [Mobile, Desktop]
+        $ul_timezone: {type: string}
+        $ul_page: {type: string}
+        $ul_pathname: {type: string}
+        $ul_host: {type: string}
+        $ul_referrer: {type: string}
+        $ul_referring_domain: {type: string}
+        $ul_query: {type: string}
+    SnapshotNode:
+      type: object
+      description: DOM snapshot node captured with auto-tracked clicks
+      required: [tag_name, nth_child, nth_of_type, attributes]
+      properties:
+        tag_name:
+          type: string
+          description: HTML tag (e.g., "button")
+        attr_class:
+          type: array
+          items: {type: string}
+        attr_id:
+          type: string
+        href:
+          type: string
+        nth_child:
+          type: integer
+        nth_of_type:
+          type: integer
+        attributes:
+          type: object
+          additionalProperties: {type: string}
+          description: All attributes (prefixed with "attr__")
+        text:
+          type: string
+        is_target:
+          type: boolean
+          description: True for the clicked element
+        leads_to_target:
+          type: boolean
+          description: True for ancestor elements
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnapshotNode'
+tags:
+  - name: Events
+    description: User identification, company grouping, and event ingestion

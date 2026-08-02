@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: searched
+source: https://registry.npmjs.org/-/v1/search?text=userlens
+packages:
+  - language: javascript
+    registry: npm
+    name: userlens-analytics-sdk
+    url: https://www.npmjs.com/package/userlens-analytics-sdk
+    install: npm install userlens-analytics-sdk
+    official: true
+    latest_version: 1.2.6
+    description: Userlens JavaScript analytics SDK for React 16.8+ / Next.js 12+ —
+      auto-captures clicks (XPath + DOM snapshot), page views, and custom events
+      (~15KB gzipped).
+    repository: https://github.com/wudpecker/userlens-analytics-sdk
+    publisher: ankurwudpecker
+    first_published: '2025-02-18'
+    last_published: '2026-07-02'
+  - language: javascript
+    registry: npm
+    name: userlens-session-recorder
+    url: https://www.npmjs.com/package/userlens-session-recorder
+    install: npm install userlens-session-recorder
+    official: true
+    latest_version: 2.2.1
+    description: Session recording library for Userlens.
+    publisher: ankurwudpecker
+    first_published: '2026-01-07'
+    last_published: '2026-07-02'
+  - language: javascript
+    registry: npm
+    name: userlens-analytics-sdk-node
+    url: https://www.npmjs.com/package/userlens-analytics-sdk-node
+    install: npm install userlens-analytics-sdk-node
+    official: true
+    latest_version: 1.0.2
+    description: Node.js server-side SDK for the Userlens Events API.
+    publisher: ankurwudpecker
+    first_published: '2025-02-18'
+    last_published: '2025-02-19'
+notes:
+  - All three packages are published by npm user "ankurwudpecker" (Ankur Dahama,
+    Userlens co-founder; formerly Wudpecker), so they are first-party.
+  - PyPI probes for userlens / userlens-sdk / userlens-analytics returned 404 —
+    no Python package published.
+  - The docs recommend the HTTP API for all non-JavaScript languages.

@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+docs: https://userlens.gitbook.io/userlens-analytics/guides/api-reference
+summary:
+  types: [http]
+  http_schemes: [basic]
+  oauth2_flows: []
+schemes:
+  - name: writeCodeBasicAuth
+    type: http
+    scheme: basic
+    description: All API requests require the account Write Code in the Authorization
+      header using HTTP Basic Auth. The token is the base64 encoding of "write_code:"
+      (write code as username, trailing colon, empty password). The Write Code is
+      issued in the Userlens app at Settings > Integrations > Userlens SDK.
+    credential:
+      name: Write Code
+      obtain_from: https://app.userlens.io/settings/integrations/userlens-sdk
+    sources: [openapi/userlens-events-openapi.yml]
+notes:
+  - No OAuth 2.0, OpenID Connect, or API-key-in-query schemes are documented for
+    the Events API.
+  - The product app advertises OKTA/SSO access on the Enterprise plan (pricing
+    page), which applies to dashboard login, not the Events API.
