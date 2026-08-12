@@ -56,6 +56,8 @@ apis:
   - type: APIReference
     url: https://userlens.gitbook.io/userlens-analytics/guides/api-reference
 common:
+- type: Overlay
+  url: overlays/userlens-events-overlay.yaml
 - type: DomainSecurity
   url: security/userlens-domain-security.yml
 - url: https://userlens.io
