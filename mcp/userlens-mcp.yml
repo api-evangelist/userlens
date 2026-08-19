@@ -2,26 +2,31 @@ generated: '2026-07-21'
 method: derived
 source: openapi/userlens-events-openapi.yml
 status: candidate
-notes: No official Userlens MCP server was found on the docs (userlens.gitbook.io),
-  the marketing site, npm, or the site llms.txt. Candidate tools below are derived
-  from the documented Events API operations.
+notes: No official Userlens MCP server was found on the docs (userlens.gitbook.io), the marketing site,
+  npm, or the site llms.txt. Candidate tools below are derived from the documented Events API operations.
 server:
   name: userlens
   transport: http
 tools:
-  - name: identify_user
-    description: Sync user traits with Userlens (call on signup, login, or profile
-      update) via the identify event type.
-    source_operation: openapi/userlens-events-openapi.yml#submitEvent
-  - name: group_user
-    description: Associate a user with a company/organization (B2B account analytics)
-      via the group event type.
-    source_operation: openapi/userlens-events-openapi.yml#submitEvent
-  - name: track_event
-    description: Record a custom product event (e.g. Subscription Upgraded) with
-      properties via the track event type.
-    source_operation: openapi/userlens-events-openapi.yml#submitEvent
-  - name: forward_raw_events
-    description: Forward a batch of SDK-collected events (clicks, custom events,
-      page views) through a proxy to raw.userlens.io.
-    source_operation: openapi/userlens-events-openapi.yml#forwardRawEvents
+- name: identify_user
+  description: Sync user traits with Userlens (call on signup, login, or profile update) via the identify
+    event type.
+  source_operation: openapi/userlens-events-openapi.yml#submitEvent
+- name: group_user
+  description: Associate a user with a company/organization (B2B account analytics) via the group event
+    type.
+  source_operation: openapi/userlens-events-openapi.yml#submitEvent
+- name: track_event
+  description: Record a custom product event (e.g. Subscription Upgraded) with properties via the track
+    event type.
+  source_operation: openapi/userlens-events-openapi.yml#submitEvent
+- name: forward_raw_events
+  description: Forward a batch of SDK-collected events (clicks, custom events, page views) through a proxy
+    to raw.userlens.io.
+  source_operation: openapi/userlens-events-openapi.yml#forwardRawEvents
+deployment:
+  mode: none
+  verified: derived
+  tools: 4
+  checked: '2026-08-12'
+  source: catalog MCP census

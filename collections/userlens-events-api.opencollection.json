@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Userlens Events API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Identify a user, group a user into a company, or track a custom event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://events.userlens.io/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Single ingestion endpoint dispatched by the `type` field. Use `identify` to sync user traits (on signup, login, or profile update), `group` to associate a user with a company or organization (essential for B2B analytics), and `track` to record a custom event such as a purchase or feature usage."
+        },
+        {
+          "info": {
+            "name": "Forward SDK-collected events in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://events.userlens.io/raw/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Forward events collected by the Userlens JavaScript SDK. This is the endpoint a proxy server should use when routing SDK events through your own backend. Accepts auto-captured clicks (XPath + DOM snapshot), custom pushed events, and page views."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

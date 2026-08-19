@@ -1,0 +1,530 @@
+{
+  "item": [
+    {
+      "id": "af978d56-6d8a-4ca9-814a-cd60fe48c43e",
+      "name": "Events",
+      "description": {
+        "content": "User identification, company grouping, and event ingestion",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f063ba50-3b77-4e74-b4c9-759e4a7af06f",
+          "name": "Identify a user, group a user into a company, or track a custom event",
+          "request": {
+            "name": "Identify a user, group a user into a company, or track a custom event",
+            "description": {
+              "content": "Single ingestion endpoint dispatched by the `type` field. Use `identify` to sync user traits (on signup, login, or profile update), `group` to associate a user with a company or organization (essential for B2B analytics), and `track` to record a custom event such as a purchase or feature usage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"source\": \"<string>\",\n  \"traits\": {\n    \"key_0\": false,\n    \"key_1\": 2667\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fbc16eec-77a6-4e00-bf1e-bfcfb20d3ad3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"userId\": \"string\",\n  \"source\": \"userlens-js-analytics-sdk\",\n  \"traits\": {\n    \"key_0\": 7906.551515500264,\n    \"key_1\": 3712\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "656579f8-e838-47e7-be44-0d81565fcf58",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"userId\": \"string\",\n  \"source\": \"userlens-js-analytics-sdk\",\n  \"traits\": {\n    \"key_0\": 7906.551515500264,\n    \"key_1\": 3712\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "96557ee1-f7b3-4697-bdc2-783dececd5e3",
+              "name": "Invalid or missing Write Code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"userId\": \"string\",\n  \"source\": \"userlens-js-analytics-sdk\",\n  \"traits\": {\n    \"key_0\": 7906.551515500264,\n    \"key_1\": 3712\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a805485c-768b-489b-a198-d6bed6e1c0ec",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"userId\": \"string\",\n  \"source\": \"userlens-js-analytics-sdk\",\n  \"traits\": {\n    \"key_0\": 7906.551515500264,\n    \"key_1\": 3712\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "485479c4-2304-4d76-9a2d-81e1cbf55ac2",
+          "name": "Forward SDK-collected events in batch",
+          "request": {
+            "name": "Forward SDK-collected events in batch",
+            "description": {
+              "content": "Forward events collected by the Userlens JavaScript SDK. This is the endpoint a proxy server should use when routing SDK events through your own backend. Accepts auto-captured clicks (XPath + DOM snapshot), custom pushed events, and page views.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "raw",
+                "event"
+              ],
+              "host": [
+                "{{raw-event-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"events\": [\n    {\n      \"event\": \"<string>\",\n      \"is_raw\": \"<boolean>\",\n      \"snapshot\": [\n        {\n          \"tag_name\": \"<string>\",\n          \"nth_child\": \"<integer>\",\n          \"nth_of_type\": \"<integer>\",\n          \"attributes\": {\n            \"key_0\": \"<string>\"\n          },\n          \"attr_class\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"attr_id\": \"<string>\",\n          \"href\": \"<string>\",\n          \"text\": \"<string>\",\n          \"is_target\": \"<boolean>\",\n          \"leads_to_target\": \"<boolean>\",\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"<string>\",\n          \"nth_child\": \"<integer>\",\n          \"nth_of_type\": \"<integer>\",\n          \"attributes\": {\n            \"key_0\": \"<string>\"\n          },\n          \"attr_class\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"attr_id\": \"<string>\",\n          \"href\": \"<string>\",\n          \"text\": \"<string>\",\n          \"is_target\": \"<boolean>\",\n          \"leads_to_target\": \"<boolean>\",\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"<string>\",\n        \"$ul_browser_version\": \"<string>\",\n        \"$ul_os\": \"<string>\",\n        \"$ul_os_version\": \"<string>\",\n        \"$ul_browser_language\": \"<string>\",\n        \"$ul_screen_width\": \"<number>\",\n        \"$ul_screen_height\": \"<number>\",\n        \"$ul_viewport_width\": \"<number>\",\n        \"$ul_viewport_height\": \"<number>\",\n        \"$ul_device_type\": \"<string>\",\n        \"$ul_timezone\": \"<string>\",\n        \"$ul_page\": \"<string>\",\n        \"$ul_pathname\": \"<string>\",\n        \"$ul_host\": \"<string>\",\n        \"$ul_referrer\": \"<string>\",\n        \"$ul_referring_domain\": \"<string>\",\n        \"$ul_query\": \"<string>\"\n      },\n      \"userId\": \"<string>\"\n    },\n    {\n      \"event\": \"<string>\",\n      \"is_raw\": \"<boolean>\",\n      \"snapshot\": [\n        {\n          \"tag_name\": \"<string>\",\n          \"nth_child\": \"<integer>\",\n          \"nth_of_type\": \"<integer>\",\n          \"attributes\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\",\n            \"key_3\": \"<string>\",\n            \"key_4\": \"<string>\"\n          },\n          \"attr_class\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"attr_id\": \"<string>\",\n          \"href\": \"<string>\",\n          \"text\": \"<string>\",\n          \"is_target\": \"<boolean>\",\n          \"leads_to_target\": \"<boolean>\",\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"<string>\",\n          \"nth_child\": \"<integer>\",\n          \"nth_of_type\": \"<integer>\",\n          \"attributes\": {\n            \"key_0\": \"<string>\"\n          },\n          \"attr_class\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"attr_id\": \"<string>\",\n          \"href\": \"<string>\",\n          \"text\": \"<string>\",\n          \"is_target\": \"<boolean>\",\n          \"leads_to_target\": \"<boolean>\",\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"<string>\",\n        \"$ul_browser_version\": \"<string>\",\n        \"$ul_os\": \"<string>\",\n        \"$ul_os_version\": \"<string>\",\n        \"$ul_browser_language\": \"<string>\",\n        \"$ul_screen_width\": \"<number>\",\n        \"$ul_screen_height\": \"<number>\",\n        \"$ul_viewport_width\": \"<number>\",\n        \"$ul_viewport_height\": \"<number>\",\n        \"$ul_device_type\": \"<string>\",\n        \"$ul_timezone\": \"<string>\",\n        \"$ul_page\": \"<string>\",\n        \"$ul_pathname\": \"<string>\",\n        \"$ul_host\": \"<string>\",\n        \"$ul_referrer\": \"<string>\",\n        \"$ul_referring_domain\": \"<string>\",\n        \"$ul_query\": \"<string>\"\n      },\n      \"userId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "90f807b4-6605-4a49-b8c8-bfffa5b3b19b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raw",
+                    "event"
+                  ],
+                  "host": [
+                    "{{raw-event-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"events\": [\n    {\n      \"event\": \"string\",\n      \"is_raw\": false,\n      \"snapshot\": [\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 1589,\n          \"nth_of_type\": 512,\n          \"attributes\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\",\n            \"key_4\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": false,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 300,\n          \"nth_of_type\": 2503,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": false,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"string\",\n        \"$ul_browser_version\": \"string\",\n        \"$ul_os\": \"string\",\n        \"$ul_os_version\": \"string\",\n        \"$ul_browser_language\": \"string\",\n        \"$ul_screen_width\": 6637.737915515118,\n        \"$ul_screen_height\": 7720.548809608504,\n        \"$ul_viewport_width\": 2419.5516545093756,\n        \"$ul_viewport_height\": 7363.906948341353,\n        \"$ul_device_type\": \"Desktop\",\n        \"$ul_timezone\": \"string\",\n        \"$ul_page\": \"string\",\n        \"$ul_pathname\": \"string\",\n        \"$ul_host\": \"string\",\n        \"$ul_referrer\": \"string\",\n        \"$ul_referring_domain\": \"string\",\n        \"$ul_query\": \"string\"\n      },\n      \"userId\": \"string\"\n    },\n    {\n      \"event\": \"string\",\n      \"is_raw\": true,\n      \"snapshot\": [\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 163,\n          \"nth_of_type\": 6209,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": true,\n          \"leads_to_target\": true,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 8102,\n          \"nth_of_type\": 8146,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": true,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"string\",\n        \"$ul_browser_version\": \"string\",\n        \"$ul_os\": \"string\",\n        \"$ul_os_version\": \"string\",\n        \"$ul_browser_language\": \"string\",\n        \"$ul_screen_width\": 8818.681627304251,\n        \"$ul_screen_height\": 4870.1094265495985,\n        \"$ul_viewport_width\": 5054.042504784737,\n        \"$ul_viewport_height\": 4568.808473518624,\n        \"$ul_device_type\": \"Desktop\",\n        \"$ul_timezone\": \"string\",\n        \"$ul_page\": \"string\",\n        \"$ul_pathname\": \"string\",\n        \"$ul_host\": \"string\",\n        \"$ul_referrer\": \"string\",\n        \"$ul_referring_domain\": \"string\",\n        \"$ul_query\": \"string\"\n      },\n      \"userId\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "df32f5b8-80a0-42f8-b0e4-cb0478769434",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raw",
+                    "event"
+                  ],
+                  "host": [
+                    "{{raw-event-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"events\": [\n    {\n      \"event\": \"string\",\n      \"is_raw\": false,\n      \"snapshot\": [\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 1589,\n          \"nth_of_type\": 512,\n          \"attributes\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\",\n            \"key_4\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": false,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 300,\n          \"nth_of_type\": 2503,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": false,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"string\",\n        \"$ul_browser_version\": \"string\",\n        \"$ul_os\": \"string\",\n        \"$ul_os_version\": \"string\",\n        \"$ul_browser_language\": \"string\",\n        \"$ul_screen_width\": 6637.737915515118,\n        \"$ul_screen_height\": 7720.548809608504,\n        \"$ul_viewport_width\": 2419.5516545093756,\n        \"$ul_viewport_height\": 7363.906948341353,\n        \"$ul_device_type\": \"Desktop\",\n        \"$ul_timezone\": \"string\",\n        \"$ul_page\": \"string\",\n        \"$ul_pathname\": \"string\",\n        \"$ul_host\": \"string\",\n        \"$ul_referrer\": \"string\",\n        \"$ul_referring_domain\": \"string\",\n        \"$ul_query\": \"string\"\n      },\n      \"userId\": \"string\"\n    },\n    {\n      \"event\": \"string\",\n      \"is_raw\": true,\n      \"snapshot\": [\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 163,\n          \"nth_of_type\": 6209,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": true,\n          \"leads_to_target\": true,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 8102,\n          \"nth_of_type\": 8146,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": true,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"string\",\n        \"$ul_browser_version\": \"string\",\n        \"$ul_os\": \"string\",\n        \"$ul_os_version\": \"string\",\n        \"$ul_browser_language\": \"string\",\n        \"$ul_screen_width\": 8818.681627304251,\n        \"$ul_screen_height\": 4870.1094265495985,\n        \"$ul_viewport_width\": 5054.042504784737,\n        \"$ul_viewport_height\": 4568.808473518624,\n        \"$ul_device_type\": \"Desktop\",\n        \"$ul_timezone\": \"string\",\n        \"$ul_page\": \"string\",\n        \"$ul_pathname\": \"string\",\n        \"$ul_host\": \"string\",\n        \"$ul_referrer\": \"string\",\n        \"$ul_referring_domain\": \"string\",\n        \"$ul_query\": \"string\"\n      },\n      \"userId\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "688014ae-cb34-486a-a3ef-5816f5eee372",
+              "name": "Invalid or missing Write Code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raw",
+                    "event"
+                  ],
+                  "host": [
+                    "{{raw-event-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"events\": [\n    {\n      \"event\": \"string\",\n      \"is_raw\": false,\n      \"snapshot\": [\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 1589,\n          \"nth_of_type\": 512,\n          \"attributes\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\",\n            \"key_4\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": false,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 300,\n          \"nth_of_type\": 2503,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": false,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"string\",\n        \"$ul_browser_version\": \"string\",\n        \"$ul_os\": \"string\",\n        \"$ul_os_version\": \"string\",\n        \"$ul_browser_language\": \"string\",\n        \"$ul_screen_width\": 6637.737915515118,\n        \"$ul_screen_height\": 7720.548809608504,\n        \"$ul_viewport_width\": 2419.5516545093756,\n        \"$ul_viewport_height\": 7363.906948341353,\n        \"$ul_device_type\": \"Desktop\",\n        \"$ul_timezone\": \"string\",\n        \"$ul_page\": \"string\",\n        \"$ul_pathname\": \"string\",\n        \"$ul_host\": \"string\",\n        \"$ul_referrer\": \"string\",\n        \"$ul_referring_domain\": \"string\",\n        \"$ul_query\": \"string\"\n      },\n      \"userId\": \"string\"\n    },\n    {\n      \"event\": \"string\",\n      \"is_raw\": true,\n      \"snapshot\": [\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 163,\n          \"nth_of_type\": 6209,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": true,\n          \"leads_to_target\": true,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 8102,\n          \"nth_of_type\": 8146,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": true,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"string\",\n        \"$ul_browser_version\": \"string\",\n        \"$ul_os\": \"string\",\n        \"$ul_os_version\": \"string\",\n        \"$ul_browser_language\": \"string\",\n        \"$ul_screen_width\": 8818.681627304251,\n        \"$ul_screen_height\": 4870.1094265495985,\n        \"$ul_viewport_width\": 5054.042504784737,\n        \"$ul_viewport_height\": 4568.808473518624,\n        \"$ul_device_type\": \"Desktop\",\n        \"$ul_timezone\": \"string\",\n        \"$ul_page\": \"string\",\n        \"$ul_pathname\": \"string\",\n        \"$ul_host\": \"string\",\n        \"$ul_referrer\": \"string\",\n        \"$ul_referring_domain\": \"string\",\n        \"$ul_query\": \"string\"\n      },\n      \"userId\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7f2fea5d-24b2-43d5-b29a-0f6b2640df21",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raw",
+                    "event"
+                  ],
+                  "host": [
+                    "{{raw-event-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"events\": [\n    {\n      \"event\": \"string\",\n      \"is_raw\": false,\n      \"snapshot\": [\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 1589,\n          \"nth_of_type\": 512,\n          \"attributes\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\",\n            \"key_4\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": false,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 300,\n          \"nth_of_type\": 2503,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": false,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"string\",\n        \"$ul_browser_version\": \"string\",\n        \"$ul_os\": \"string\",\n        \"$ul_os_version\": \"string\",\n        \"$ul_browser_language\": \"string\",\n        \"$ul_screen_width\": 6637.737915515118,\n        \"$ul_screen_height\": 7720.548809608504,\n        \"$ul_viewport_width\": 2419.5516545093756,\n        \"$ul_viewport_height\": 7363.906948341353,\n        \"$ul_device_type\": \"Desktop\",\n        \"$ul_timezone\": \"string\",\n        \"$ul_page\": \"string\",\n        \"$ul_pathname\": \"string\",\n        \"$ul_host\": \"string\",\n        \"$ul_referrer\": \"string\",\n        \"$ul_referring_domain\": \"string\",\n        \"$ul_query\": \"string\"\n      },\n      \"userId\": \"string\"\n    },\n    {\n      \"event\": \"string\",\n      \"is_raw\": true,\n      \"snapshot\": [\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 163,\n          \"nth_of_type\": 6209,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": true,\n          \"leads_to_target\": true,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        },\n        {\n          \"tag_name\": \"string\",\n          \"nth_child\": 8102,\n          \"nth_of_type\": 8146,\n          \"attributes\": {\n            \"key_0\": \"string\"\n          },\n          \"attr_class\": [\n            \"string\",\n            \"string\"\n          ],\n          \"attr_id\": \"string\",\n          \"href\": \"string\",\n          \"text\": \"string\",\n          \"is_target\": true,\n          \"leads_to_target\": false,\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SnapshotNode detected>\"\n            }\n          ]\n        }\n      ],\n      \"properties\": {\n        \"$ul_browser\": \"string\",\n        \"$ul_browser_version\": \"string\",\n        \"$ul_os\": \"string\",\n        \"$ul_os_version\": \"string\",\n        \"$ul_browser_language\": \"string\",\n        \"$ul_screen_width\": 8818.681627304251,\n        \"$ul_screen_height\": 4870.1094265495985,\n        \"$ul_viewport_width\": 5054.042504784737,\n        \"$ul_viewport_height\": 4568.808473518624,\n        \"$ul_device_type\": \"Desktop\",\n        \"$ul_timezone\": \"string\",\n        \"$ul_page\": \"string\",\n        \"$ul_pathname\": \"string\",\n        \"$ul_host\": \"string\",\n        \"$ul_referrer\": \"string\",\n        \"$ul_referring_domain\": \"string\",\n        \"$ul_query\": \"string\"\n      },\n      \"userId\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://events.userlens.io",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://raw.userlens.io",
+      "key": "raw-event-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "cb41b79b-48f9-4cb8-85df-db31eb81a9c6",
+    "name": "Userlens Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Userlens HTTP API for direct integration or server-side event forwarding. Identify users, associate them with companies (groups), track custom events, and forward batched SDK-collected events. All requests authenticate with your Write Code via HTTP Basic Auth (write code as username, empty password).\n\nContact Support:\n Name: Userlens",
+      "type": "text/plain"
+    }
+  }
+}
