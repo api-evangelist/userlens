@@ -47,6 +47,8 @@ apis:
   humanURL: https://userlens.gitbook.io/userlens-analytics
   baseURL: https://events.userlens.io
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
