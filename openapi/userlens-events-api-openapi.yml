@@ -72,6 +72,102 @@ paths:
           description: Server error
 components:
   schemas:
+    IdentifyRequest:
+      type: object
+      required:
+      - type
+      - userId
+      - source
+      - traits
+      properties:
+        type:
+          type: string
+          const: identify
+          description: Must be "identify"
+        userId:
+          type: string
+          description: Unique user identifier
+        source:
+          type: string
+          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
+          enum:
+          - userlens-js-analytics-sdk
+          - userlens-restapi
+        traits:
+          type: object
+          description: User properties (email, name, plan, etc.)
+          additionalProperties: true
+    RawEvent:
+      type: object
+      description: Auto-captured click event (event value is the XPath of the clicked element)
+      required:
+      - event
+      - is_raw
+      - snapshot
+      - properties
+      properties:
+        event:
+          type: string
+          description: XPath of clicked element
+        is_raw:
+          type: boolean
+          const: true
+        userId:
+          type: string
+        snapshot:
+          type: array
+          description: DOM tree structure
+          items:
+            $ref: '#/components/schemas/SnapshotNode'
+        properties:
+          $ref: '#/components/schemas/BrowserContextProperties'
+    PushedEvent:
+      type: object
+      description: Custom event manually tracked via pushEvent()
+      required:
+      - event
+      - is_raw
+      properties:
+        event:
+          type: string
+          description: Event name
+        is_raw:
+          type: boolean
+          const: false
+        userId:
+          type: string
+        properties:
+          type: object
+          description: Custom properties plus auto-added browser context ($ul_-prefixed)
+          additionalProperties: true
+    TrackRequest:
+      type: object
+      required:
+      - type
+      - userId
+      - source
+      - event
+      properties:
+        type:
+          type: string
+          const: track
+          description: Must be "track"
+        userId:
+          type: string
+          description: User who performed the action
+        source:
+          type: string
+          description: Use "userlens-restapi"
+          enum:
+          - userlens-js-analytics-sdk
+          - userlens-restapi
+        event:
+          type: string
+          description: Event name (e.g., "Subscription Upgraded")
+        properties:
+          type: object
+          description: Additional event metadata
+          additionalProperties: true
     PageViewEvent:
       type: object
       description: Navigation event
@@ -99,71 +195,6 @@ components:
               type: string
             $ul_query:
               type: string
-    SnapshotNode:
-      type: object
-      description: DOM snapshot node captured with auto-tracked clicks
-      required:
-      - tag_name
-      - nth_child
-      - nth_of_type
-      - attributes
-      properties:
-        tag_name:
-          type: string
-          description: HTML tag (e.g., "button")
-        attr_class:
-          type: array
-          items:
-            type: string
-        attr_id:
-          type: string
-        href:
-          type: string
-        nth_child:
-          type: integer
-        nth_of_type:
-          type: integer
-        attributes:
-          type: object
-          additionalProperties:
-            type: string
-          description: All attributes (prefixed with "attr__")
-        text:
-          type: string
-        is_target:
-          type: boolean
-          description: True for the clicked element
-        leads_to_target:
-          type: boolean
-          description: True for ancestor elements
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/SnapshotNode'
-    RawEvent:
-      type: object
-      description: Auto-captured click event (event value is the XPath of the clicked element)
-      required:
-      - event
-      - is_raw
-      - snapshot
-      - properties
-      properties:
-        event:
-          type: string
-          description: XPath of clicked element
-        is_raw:
-          type: boolean
-          const: true
-        userId:
-          type: string
-        snapshot:
-          type: array
-          description: DOM tree structure
-          items:
-            $ref: '#/components/schemas/SnapshotNode'
-        properties:
-          $ref: '#/components/schemas/BrowserContextProperties'
     BrowserContextProperties:
       type: object
       description: Browser context auto-added to SDK events ($ul_-prefixed)
@@ -205,90 +236,6 @@ components:
           type: string
         $ul_query:
           type: string
-    PushedEvent:
-      type: object
-      description: Custom event manually tracked via pushEvent()
-      required:
-      - event
-      - is_raw
-      properties:
-        event:
-          type: string
-          description: Event name
-        is_raw:
-          type: boolean
-          const: false
-        userId:
-          type: string
-        properties:
-          type: object
-          description: Custom properties plus auto-added browser context ($ul_-prefixed)
-          additionalProperties: true
-    RawEventBatch:
-      type: object
-      required:
-      - events
-      properties:
-        events:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/RawEvent'
-            - $ref: '#/components/schemas/PushedEvent'
-            - $ref: '#/components/schemas/PageViewEvent'
-    TrackRequest:
-      type: object
-      required:
-      - type
-      - userId
-      - source
-      - event
-      properties:
-        type:
-          type: string
-          const: track
-          description: Must be "track"
-        userId:
-          type: string
-          description: User who performed the action
-        source:
-          type: string
-          description: Use "userlens-restapi"
-          enum:
-          - userlens-js-analytics-sdk
-          - userlens-restapi
-        event:
-          type: string
-          description: Event name (e.g., "Subscription Upgraded")
-        properties:
-          type: object
-          description: Additional event metadata
-          additionalProperties: true
-    IdentifyRequest:
-      type: object
-      required:
-      - type
-      - userId
-      - source
-      - traits
-      properties:
-        type:
-          type: string
-          const: identify
-          description: Must be "identify"
-        userId:
-          type: string
-          description: Unique user identifier
-        source:
-          type: string
-          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
-          enum:
-          - userlens-js-analytics-sdk
-          - userlens-restapi
-        traits:
-          type: object
-          description: User properties (email, name, plan, etc.)
-          additionalProperties: true
     GroupRequest:
       type: object
       required:
@@ -317,6 +264,59 @@ components:
           type: object
           description: Company properties (name, industry, employees, plan, etc.)
           additionalProperties: true
+    SnapshotNode:
+      type: object
+      description: DOM snapshot node captured with auto-tracked clicks
+      required:
+      - tag_name
+      - nth_child
+      - nth_of_type
+      - attributes
+      properties:
+        tag_name:
+          type: string
+          description: HTML tag (e.g., "button")
+        attr_class:
+          type: array
+          items:
+            type: string
+        attr_id:
+          type: string
+        href:
+          type: string
+        nth_child:
+          type: integer
+        nth_of_type:
+          type: integer
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+          description: All attributes (prefixed with "attr__")
+        text:
+          type: string
+        is_target:
+          type: boolean
+          description: True for the clicked element
+        leads_to_target:
+          type: boolean
+          description: True for ancestor elements
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnapshotNode'
+    RawEventBatch:
+      type: object
+      required:
+      - events
+      properties:
+        events:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/RawEvent'
+            - $ref: '#/components/schemas/PushedEvent'
+            - $ref: '#/components/schemas/PageViewEvent'
   securitySchemes:
     writeCodeBasicAuth:
       type: http
