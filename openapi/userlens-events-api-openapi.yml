@@ -72,170 +72,6 @@ paths:
           description: Server error
 components:
   schemas:
-    IdentifyRequest:
-      type: object
-      required:
-      - type
-      - userId
-      - source
-      - traits
-      properties:
-        type:
-          type: string
-          const: identify
-          description: Must be "identify"
-        userId:
-          type: string
-          description: Unique user identifier
-        source:
-          type: string
-          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
-          enum:
-          - userlens-js-analytics-sdk
-          - userlens-restapi
-        traits:
-          type: object
-          description: User properties (email, name, plan, etc.)
-          additionalProperties: true
-    RawEvent:
-      type: object
-      description: Auto-captured click event (event value is the XPath of the clicked element)
-      required:
-      - event
-      - is_raw
-      - snapshot
-      - properties
-      properties:
-        event:
-          type: string
-          description: XPath of clicked element
-        is_raw:
-          type: boolean
-          const: true
-        userId:
-          type: string
-        snapshot:
-          type: array
-          description: DOM tree structure
-          items:
-            $ref: '#/components/schemas/SnapshotNode'
-        properties:
-          $ref: '#/components/schemas/BrowserContextProperties'
-    PushedEvent:
-      type: object
-      description: Custom event manually tracked via pushEvent()
-      required:
-      - event
-      - is_raw
-      properties:
-        event:
-          type: string
-          description: Event name
-        is_raw:
-          type: boolean
-          const: false
-        userId:
-          type: string
-        properties:
-          type: object
-          description: Custom properties plus auto-added browser context ($ul_-prefixed)
-          additionalProperties: true
-    TrackRequest:
-      type: object
-      required:
-      - type
-      - userId
-      - source
-      - event
-      properties:
-        type:
-          type: string
-          const: track
-          description: Must be "track"
-        userId:
-          type: string
-          description: User who performed the action
-        source:
-          type: string
-          description: Use "userlens-restapi"
-          enum:
-          - userlens-js-analytics-sdk
-          - userlens-restapi
-        event:
-          type: string
-          description: Event name (e.g., "Subscription Upgraded")
-        properties:
-          type: object
-          description: Additional event metadata
-          additionalProperties: true
-    PageViewEvent:
-      type: object
-      description: Navigation event
-      required:
-      - event
-      - properties
-      properties:
-        event:
-          type: string
-          const: $ul_pageview
-        userId:
-          type: string
-        properties:
-          type: object
-          properties:
-            $ul_page:
-              type: string
-            $ul_pathname:
-              type: string
-            $ul_host:
-              type: string
-            $ul_referrer:
-              type: string
-            $ul_referring_domain:
-              type: string
-            $ul_query:
-              type: string
-    BrowserContextProperties:
-      type: object
-      description: Browser context auto-added to SDK events ($ul_-prefixed)
-      properties:
-        $ul_browser:
-          type: string
-        $ul_browser_version:
-          type: string
-        $ul_os:
-          type: string
-        $ul_os_version:
-          type: string
-        $ul_browser_language:
-          type: string
-        $ul_screen_width:
-          type: number
-        $ul_screen_height:
-          type: number
-        $ul_viewport_width:
-          type: number
-        $ul_viewport_height:
-          type: number
-        $ul_device_type:
-          type: string
-          enum:
-          - Mobile
-          - Desktop
-        $ul_timezone:
-          type: string
-        $ul_page:
-          type: string
-        $ul_pathname:
-          type: string
-        $ul_host:
-          type: string
-        $ul_referrer:
-          type: string
-        $ul_referring_domain:
-          type: string
-        $ul_query:
-          type: string
     GroupRequest:
       type: object
       required:
@@ -305,6 +141,30 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SnapshotNode'
+    RawEvent:
+      type: object
+      description: Auto-captured click event (event value is the XPath of the clicked element)
+      required:
+      - event
+      - is_raw
+      - snapshot
+      - properties
+      properties:
+        event:
+          type: string
+          description: XPath of clicked element
+        is_raw:
+          type: boolean
+          const: true
+        userId:
+          type: string
+        snapshot:
+          type: array
+          description: DOM tree structure
+          items:
+            $ref: '#/components/schemas/SnapshotNode'
+        properties:
+          $ref: '#/components/schemas/BrowserContextProperties'
     RawEventBatch:
       type: object
       required:
@@ -317,6 +177,146 @@ components:
             - $ref: '#/components/schemas/RawEvent'
             - $ref: '#/components/schemas/PushedEvent'
             - $ref: '#/components/schemas/PageViewEvent'
+    PushedEvent:
+      type: object
+      description: Custom event manually tracked via pushEvent()
+      required:
+      - event
+      - is_raw
+      properties:
+        event:
+          type: string
+          description: Event name
+        is_raw:
+          type: boolean
+          const: false
+        userId:
+          type: string
+        properties:
+          type: object
+          description: Custom properties plus auto-added browser context ($ul_-prefixed)
+          additionalProperties: true
+    TrackRequest:
+      type: object
+      required:
+      - type
+      - userId
+      - source
+      - event
+      properties:
+        type:
+          type: string
+          const: track
+          description: Must be "track"
+        userId:
+          type: string
+          description: User who performed the action
+        source:
+          type: string
+          description: Use "userlens-restapi"
+          enum:
+          - userlens-js-analytics-sdk
+          - userlens-restapi
+        event:
+          type: string
+          description: Event name (e.g., "Subscription Upgraded")
+        properties:
+          type: object
+          description: Additional event metadata
+          additionalProperties: true
+    IdentifyRequest:
+      type: object
+      required:
+      - type
+      - userId
+      - source
+      - traits
+      properties:
+        type:
+          type: string
+          const: identify
+          description: Must be "identify"
+        userId:
+          type: string
+          description: Unique user identifier
+        source:
+          type: string
+          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
+          enum:
+          - userlens-js-analytics-sdk
+          - userlens-restapi
+        traits:
+          type: object
+          description: User properties (email, name, plan, etc.)
+          additionalProperties: true
+    BrowserContextProperties:
+      type: object
+      description: Browser context auto-added to SDK events ($ul_-prefixed)
+      properties:
+        $ul_browser:
+          type: string
+        $ul_browser_version:
+          type: string
+        $ul_os:
+          type: string
+        $ul_os_version:
+          type: string
+        $ul_browser_language:
+          type: string
+        $ul_screen_width:
+          type: number
+        $ul_screen_height:
+          type: number
+        $ul_viewport_width:
+          type: number
+        $ul_viewport_height:
+          type: number
+        $ul_device_type:
+          type: string
+          enum:
+          - Mobile
+          - Desktop
+        $ul_timezone:
+          type: string
+        $ul_page:
+          type: string
+        $ul_pathname:
+          type: string
+        $ul_host:
+          type: string
+        $ul_referrer:
+          type: string
+        $ul_referring_domain:
+          type: string
+        $ul_query:
+          type: string
+    PageViewEvent:
+      type: object
+      description: Navigation event
+      required:
+      - event
+      - properties
+      properties:
+        event:
+          type: string
+          const: $ul_pageview
+        userId:
+          type: string
+        properties:
+          type: object
+          properties:
+            $ul_page:
+              type: string
+            $ul_pathname:
+              type: string
+            $ul_host:
+              type: string
+            $ul_referrer:
+              type: string
+            $ul_referring_domain:
+              type: string
+            $ul_query:
+              type: string
   securitySchemes:
     writeCodeBasicAuth:
       type: http
