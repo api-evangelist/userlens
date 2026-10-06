@@ -43,7 +43,7 @@ x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-10-06'
 tags:
 - Company
 - Customer Success
@@ -71,6 +71,10 @@ apis:
   - type: APIReference
     url: https://userlens.gitbook.io/userlens-analytics/guides/api-reference
 common:
+- url: https://userlens.io/news
+  type: Blog
+- url: https://userlens.io/news/rss.xml
+  type: BlogRSS
 - type: Overlay
   url: overlays/userlens-events-overlay.yaml
 - type: DomainSecurity
