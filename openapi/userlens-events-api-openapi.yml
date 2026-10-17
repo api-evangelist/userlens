@@ -72,76 +72,6 @@ paths:
           description: Server error
 components:
   schemas:
-    PageViewEvent:
-      type: object
-      description: Navigation event
-      required:
-      - event
-      - properties
-      properties:
-        event:
-          type: string
-          const: $ul_pageview
-        userId:
-          type: string
-        properties:
-          type: object
-          properties:
-            $ul_page:
-              type: string
-            $ul_pathname:
-              type: string
-            $ul_host:
-              type: string
-            $ul_referrer:
-              type: string
-            $ul_referring_domain:
-              type: string
-            $ul_query:
-              type: string
-    PushedEvent:
-      type: object
-      description: Custom event manually tracked via pushEvent()
-      required:
-      - event
-      - is_raw
-      properties:
-        event:
-          type: string
-          description: Event name
-        is_raw:
-          type: boolean
-          const: false
-        userId:
-          type: string
-        properties:
-          type: object
-          description: Custom properties plus auto-added browser context ($ul_-prefixed)
-          additionalProperties: true
-    RawEvent:
-      type: object
-      description: Auto-captured click event (event value is the XPath of the clicked element)
-      required:
-      - event
-      - is_raw
-      - snapshot
-      - properties
-      properties:
-        event:
-          type: string
-          description: XPath of clicked element
-        is_raw:
-          type: boolean
-          const: true
-        userId:
-          type: string
-        snapshot:
-          type: array
-          description: DOM tree structure
-          items:
-            $ref: '#/components/schemas/SnapshotNode'
-        properties:
-          $ref: '#/components/schemas/BrowserContextProperties'
     TrackRequest:
       type: object
       required:
@@ -169,112 +99,6 @@ components:
         properties:
           type: object
           description: Additional event metadata
-          additionalProperties: true
-    GroupRequest:
-      type: object
-      required:
-      - type
-      - groupId
-      - userId
-      - source
-      properties:
-        type:
-          type: string
-          const: group
-          description: Must be "group"
-        groupId:
-          type: string
-          description: Unique company/organization identifier
-        userId:
-          type: string
-          description: User being associated with the company
-        source:
-          type: string
-          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
-          enum:
-          - userlens-js-analytics-sdk
-          - userlens-restapi
-        traits:
-          type: object
-          description: Company properties (name, industry, employees, plan, etc.)
-          additionalProperties: true
-    RawEventBatch:
-      type: object
-      required:
-      - events
-      properties:
-        events:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/RawEvent'
-            - $ref: '#/components/schemas/PushedEvent'
-            - $ref: '#/components/schemas/PageViewEvent'
-    BrowserContextProperties:
-      type: object
-      description: Browser context auto-added to SDK events ($ul_-prefixed)
-      properties:
-        $ul_browser:
-          type: string
-        $ul_browser_version:
-          type: string
-        $ul_os:
-          type: string
-        $ul_os_version:
-          type: string
-        $ul_browser_language:
-          type: string
-        $ul_screen_width:
-          type: number
-        $ul_screen_height:
-          type: number
-        $ul_viewport_width:
-          type: number
-        $ul_viewport_height:
-          type: number
-        $ul_device_type:
-          type: string
-          enum:
-          - Mobile
-          - Desktop
-        $ul_timezone:
-          type: string
-        $ul_page:
-          type: string
-        $ul_pathname:
-          type: string
-        $ul_host:
-          type: string
-        $ul_referrer:
-          type: string
-        $ul_referring_domain:
-          type: string
-        $ul_query:
-          type: string
-    IdentifyRequest:
-      type: object
-      required:
-      - type
-      - userId
-      - source
-      - traits
-      properties:
-        type:
-          type: string
-          const: identify
-          description: Must be "identify"
-        userId:
-          type: string
-          description: Unique user identifier
-        source:
-          type: string
-          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
-          enum:
-          - userlens-js-analytics-sdk
-          - userlens-restapi
-        traits:
-          type: object
-          description: User properties (email, name, plan, etc.)
           additionalProperties: true
     SnapshotNode:
       type: object
@@ -317,6 +141,182 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SnapshotNode'
+    BrowserContextProperties:
+      type: object
+      description: Browser context auto-added to SDK events ($ul_-prefixed)
+      properties:
+        $ul_browser:
+          type: string
+        $ul_browser_version:
+          type: string
+        $ul_os:
+          type: string
+        $ul_os_version:
+          type: string
+        $ul_browser_language:
+          type: string
+        $ul_screen_width:
+          type: number
+        $ul_screen_height:
+          type: number
+        $ul_viewport_width:
+          type: number
+        $ul_viewport_height:
+          type: number
+        $ul_device_type:
+          type: string
+          enum:
+          - Mobile
+          - Desktop
+        $ul_timezone:
+          type: string
+        $ul_page:
+          type: string
+        $ul_pathname:
+          type: string
+        $ul_host:
+          type: string
+        $ul_referrer:
+          type: string
+        $ul_referring_domain:
+          type: string
+        $ul_query:
+          type: string
+    PushedEvent:
+      type: object
+      description: Custom event manually tracked via pushEvent()
+      required:
+      - event
+      - is_raw
+      properties:
+        event:
+          type: string
+          description: Event name
+        is_raw:
+          type: boolean
+          const: false
+        userId:
+          type: string
+        properties:
+          type: object
+          description: Custom properties plus auto-added browser context ($ul_-prefixed)
+          additionalProperties: true
+    RawEventBatch:
+      type: object
+      required:
+      - events
+      properties:
+        events:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/RawEvent'
+            - $ref: '#/components/schemas/PushedEvent'
+            - $ref: '#/components/schemas/PageViewEvent'
+    RawEvent:
+      type: object
+      description: Auto-captured click event (event value is the XPath of the clicked element)
+      required:
+      - event
+      - is_raw
+      - snapshot
+      - properties
+      properties:
+        event:
+          type: string
+          description: XPath of clicked element
+        is_raw:
+          type: boolean
+          const: true
+        userId:
+          type: string
+        snapshot:
+          type: array
+          description: DOM tree structure
+          items:
+            $ref: '#/components/schemas/SnapshotNode'
+        properties:
+          $ref: '#/components/schemas/BrowserContextProperties'
+    IdentifyRequest:
+      type: object
+      required:
+      - type
+      - userId
+      - source
+      - traits
+      properties:
+        type:
+          type: string
+          const: identify
+          description: Must be "identify"
+        userId:
+          type: string
+          description: Unique user identifier
+        source:
+          type: string
+          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
+          enum:
+          - userlens-js-analytics-sdk
+          - userlens-restapi
+        traits:
+          type: object
+          description: User properties (email, name, plan, etc.)
+          additionalProperties: true
+    PageViewEvent:
+      type: object
+      description: Navigation event
+      required:
+      - event
+      - properties
+      properties:
+        event:
+          type: string
+          const: $ul_pageview
+        userId:
+          type: string
+        properties:
+          type: object
+          properties:
+            $ul_page:
+              type: string
+            $ul_pathname:
+              type: string
+            $ul_host:
+              type: string
+            $ul_referrer:
+              type: string
+            $ul_referring_domain:
+              type: string
+            $ul_query:
+              type: string
+    GroupRequest:
+      type: object
+      required:
+      - type
+      - groupId
+      - userId
+      - source
+      properties:
+        type:
+          type: string
+          const: group
+          description: Must be "group"
+        groupId:
+          type: string
+          description: Unique company/organization identifier
+        userId:
+          type: string
+          description: User being associated with the company
+        source:
+          type: string
+          description: '"userlens-js-analytics-sdk" or "userlens-restapi"'
+          enum:
+          - userlens-js-analytics-sdk
+          - userlens-restapi
+        traits:
+          type: object
+          description: Company properties (name, industry, employees, plan, etc.)
+          additionalProperties: true
   securitySchemes:
     writeCodeBasicAuth:
       type: http
